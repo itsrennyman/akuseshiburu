@@ -5,10 +5,12 @@ export function Breadcrumb({ children, separator = ">", className, style }) {
 
   const withSeparatorChildren = childrenArray.map((child, index) => {
     if (index === childrenArray.length - 1) {
-      return React.cloneElement(child, {
+      const x = React.cloneElement(child, {
         ...child.props,
-        "aria-current": "page",
+        isTheLast: true,
       });
+
+      return x;
     }
 
     return [child, " ", <span key={index}>{separator}</span>, " "];
@@ -21,10 +23,19 @@ export function Breadcrumb({ children, separator = ">", className, style }) {
   );
 }
 
-Breadcrumb.Item = function Item({ children, href, className, style }) {
+Breadcrumb.Item = function Item({
+  children,
+  href,
+  className,
+  style,
+  isTheLast = false,
+}) {
+  const ariaCurrent = isTheLast ? "page" : undefined;
   return (
     <li className={className} style={style}>
-      <a href={href}>{children}</a>
+      <a href={href} aria-current={ariaCurrent}>
+        {children}
+      </a>
     </li>
   );
 };

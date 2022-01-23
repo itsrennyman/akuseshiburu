@@ -90,12 +90,10 @@ it("should render the className for the items", () => {
       <Breadcrumb.Item href="/home" className="my-class">
         Home
       </Breadcrumb.Item>
-      <Breadcrumb.Item href="/library">Library</Breadcrumb.Item>
-      <Breadcrumb.Item href="/data">Data</Breadcrumb.Item>
     </Breadcrumb>
   );
 
-  const element = screen.getByRole("link", { name: "Home" });
+  const element = screen.getByRole("listitem");
   expect(element).toBeInTheDocument();
   expect(element).toHaveClass("my-class");
 });
@@ -106,12 +104,10 @@ it("should render the style for the items", () => {
       <Breadcrumb.Item href="/home" style={{ color: "red" }}>
         Home
       </Breadcrumb.Item>
-      <Breadcrumb.Item href="/library">Library</Breadcrumb.Item>
-      <Breadcrumb.Item href="/data">Data</Breadcrumb.Item>
     </Breadcrumb>
   );
 
-  const element = screen.getByRole("link", { name: "Home" });
+  const element = screen.getByRole("listitem");
   expect(element).toBeInTheDocument();
   expect(element).toHaveStyle("color: red");
 });
